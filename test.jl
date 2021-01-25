@@ -14,10 +14,14 @@ macro bind(def, element)
 end
 
 # ╔═╡ 6805c290-5f39-11eb-25b4-35af904a3f36
-using PlutoUI
-
-# ╔═╡ 25984e04-5f3a-11eb-0f4f-fff86980d442
-using Plots
+begin
+	import Pkg
+	Pkg.activate(mktempdir())
+	Pkg.add("PlutoUI")
+	using PlutoUI
+	Pkg.add("Plots")
+	using Plots
+end
 
 # ╔═╡ f8409fca-5f38-11eb-3d70-abbd0172a48e
 md"# Prova per robetta interattiva col coro"
@@ -55,7 +59,6 @@ end
 # ╟─f8409fca-5f38-11eb-3d70-abbd0172a48e
 # ╠═6805c290-5f39-11eb-25b4-35af904a3f36
 # ╟─abb27b0a-5f39-11eb-2363-ebbf45649749
-# ╠═25984e04-5f3a-11eb-0f4f-fff86980d442
 # ╠═3c657fec-5f3a-11eb-03f2-9d8cf6007e5b
 # ╠═7d7f0bbc-5f3a-11eb-160f-d93295e18826
 # ╟─fa023098-5f39-11eb-2f81-2952de65bb83
