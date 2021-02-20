@@ -35,6 +35,8 @@ Benvenutə!
 Questo è un _notebook_, una specie di quaderno elettronico dove possiamo scrivere del testo (come questo que leggete), ma anche delle istruzioni particolari per fare al computer fare quello che vogliamo... circa :)
 
 Questi istrumenti sono cruciali per il lavoro di noi fisici teorici, visto che ci permettono di condividere non solo i risultati, ma anche il modo in cui ci siamo arrivati ad essi.
+
+Per esempio, questo notebook ci aiuterà a capire come si rappresentano le onde che sentiamo come suoni e magari qualcosina in più...
 """
 
 # ╔═╡ abb27b0a-5f39-11eb-2363-ebbf45649749
@@ -69,7 +71,7 @@ begin
 	time_range = 0:0.0001:0.1
 	plot(time_range, wave_1, label="frequenza 1 = $(round(f1)) Hz") 
 	plot!(time_range, wave_2, label="frequenza 2 = $(round(f2)) Hz") 
-	plot!(xlabel = "Tempo")
+	plot!(xlabel = "Tempo (s)")
 end
 
 # ╔═╡ d7ce8b18-6559-11eb-30d6-c72f0342ba84
@@ -77,16 +79,17 @@ end
 
 # ╔═╡ 308112a6-6555-11eb-1d5d-ddcba9b2bba3
 begin
-	time_range_2 = 0:0.001:10
+	length = Float64(1)
+	time_range_2 = 0:0.001:length
 	sum_wave(t) = wave_1(t) + wave_2(t)
 	plot(time_range_2, sum_wave, label="Somma") 
-	plot!(xlabel = "Tempo")
+	plot!(xlabel = "Tempo (s)")
 end
 
 # ╔═╡ f6b4a024-5f52-11eb-3322-c1457d1cdae4
 begin
 	fs = 8e3
-	t = 0.0:1/fs:prevfloat(2.5)
+	t = 0.0:1/fs:prevfloat(length)
 	y = sin.(2pi * f1 * t) * 0.1 + sin.(2pi * f2 * t) * 0.1 
 	wavwrite(y, "example.wav", Fs=fs)
 	
