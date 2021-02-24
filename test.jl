@@ -27,7 +27,8 @@ begin
 end
 
 # ╔═╡ f8409fca-5f38-11eb-3d70-abbd0172a48e
-md"# Prova per robetta interattiva col coro"
+md"# Notebook interattivo
+## Fisica e musica"
 
 # ╔═╡ 6677cb46-730c-11eb-02d5-df779155ff1e
 md"""
@@ -86,6 +87,7 @@ function plot_and_play(f1,f2,a,b,length,p_range)
 end
 
 # ╔═╡ f6b4a024-5f52-11eb-3322-c1457d1cdae4
+#rimouvi il segno # dall'inizio della seguente linea e schiaccia Shift + Enter per sentire il suono delle onde di sopra.
 #plot_and_play(f1,f2,1,1,2,500)
 
 # ╔═╡ 5bd27ffc-76ce-11eb-1bfd-7555c603db62
@@ -99,7 +101,7 @@ end
 	
 
 # ╔═╡ 308e694a-76cf-11eb-2141-6f79236f5b04
-harmonic(110,5,0.5)
+#harmonic(110,5,0.5)
 
 # ╔═╡ Cell order:
 # ╠═f8409fca-5f38-11eb-3d70-abbd0172a48e
