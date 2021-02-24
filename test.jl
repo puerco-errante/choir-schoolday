@@ -74,31 +74,35 @@ begin
 	plot!(xlabel = "Tempo (s)")
 end
 
-# ╔═╡ d7ce8b18-6559-11eb-30d6-c72f0342ba84
-
-
 # ╔═╡ 308112a6-6555-11eb-1d5d-ddcba9b2bba3
-begin
-	length = Float64(1)
-	time_range_2 = 0:0.001:length
-	sum_wave(t) = wave_1(t) + wave_2(t)
-	plot(time_range_2, sum_wave, label="Somma") 
+function plot_and_play(f1,f2,a,b,length,p_range)
+	fs = 8e3
+	t = 0.0:1/fs:prevfloat(Float64(length))
+	sum_wave(t) = (a*sin(2pi *t * f1) + b*sin(2pi *t * f2))/5
+	wavplay(sum_wave.(t) , fs)
+	plot(t[1:p_range], sum_wave, label="Somma") 
 	plot!(xlabel = "Tempo (s)")
+	
 end
 
 # ╔═╡ f6b4a024-5f52-11eb-3322-c1457d1cdae4
-begin
-	fs = 8e3
-	t = 0.0:1/fs:prevfloat(length)
-	y = sin.(2pi * f1 * t) * 0.1 + sin.(2pi * f2 * t) * 0.1 
-	wavwrite(y, "example.wav", Fs=fs)
-	
-	y, fs = wavread("example.wav")
+#plot_and_play(f1,f2,1,1,2,500)
+
+# ╔═╡ 5bd27ffc-76ce-11eb-1bfd-7555c603db62
+function harmonic(freq, n, length)
+	fs = 100 * freq
+	t = 0.0:1/fs:prevfloat(Float64(length))
+	y = sum( ((1/i^2)*sin.(2pi * i * freq * t)) for i in 1:n)
 	wavplay(y, fs)
+	plot(y[1:500])
 end
+	
+
+# ╔═╡ 308e694a-76cf-11eb-2141-6f79236f5b04
+harmonic(110,5,0.5)
 
 # ╔═╡ Cell order:
-# ╟─f8409fca-5f38-11eb-3d70-abbd0172a48e
+# ╠═f8409fca-5f38-11eb-3d70-abbd0172a48e
 # ╠═6677cb46-730c-11eb-02d5-df779155ff1e
 # ╟─6805c290-5f39-11eb-25b4-35af904a3f36
 # ╠═abb27b0a-5f39-11eb-2363-ebbf45649749
@@ -107,6 +111,7 @@ end
 # ╟─36afb2c8-5f57-11eb-0a13-21b31e1504a0
 # ╟─fa023098-5f39-11eb-2f81-2952de65bb83
 # ╠═5cf129d8-5f3b-11eb-1ca8-c7fd81335e53
-# ╠═d7ce8b18-6559-11eb-30d6-c72f0342ba84
 # ╠═308112a6-6555-11eb-1d5d-ddcba9b2bba3
 # ╠═f6b4a024-5f52-11eb-3322-c1457d1cdae4
+# ╠═5bd27ffc-76ce-11eb-1bfd-7555c603db62
+# ╠═308e694a-76cf-11eb-2141-6f79236f5b04
