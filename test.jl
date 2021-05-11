@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.12
+# v0.14.5
 
 using Markdown
 using InteractiveUtils
@@ -69,7 +69,7 @@ Frequenza 2: $(f2_slider)
 
 # ╔═╡ 5cf129d8-5f3b-11eb-1ca8-c7fd81335e53
 begin
-	time_range = 0:0.0001:0.1
+	time_range = 0:0.0001:0.16
 	plot(time_range, wave_1, label="frequenza 1 = $(round(f1)) Hz") 
 	plot!(time_range, wave_2, label="frequenza 2 = $(round(f2)) Hz") 
 	plot!(xlabel = "Tempo (s)")
@@ -88,28 +88,29 @@ end
 
 # ╔═╡ f6b4a024-5f52-11eb-3322-c1457d1cdae4
 #rimouvi il segno # dall'inizio della seguente linea e schiaccia Shift + Enter per sentire il suono delle onde di sopra.
-#plot_and_play(f1,f2,1,1,2,500)
+#plot_and_play(f1,f2,1,1,2,5000)
+plot_and_play(220,110,1,1,1,500)
 
 # ╔═╡ 5bd27ffc-76ce-11eb-1bfd-7555c603db62
 function harmonic(freq, n, length)
 	fs = 100 * freq
 	t = 0.0:1/fs:prevfloat(Float64(length))
-	y = sum( ((1/i^2)*sin.(2pi * i * freq * t)) for i in 1:n)
+	y = sum( ((1/i)*sin.(2pi * i * freq * t)) for i in 1:n)
 	wavplay(y, fs)
 	plot(y[1:500])
 end
 	
 
 # ╔═╡ 308e694a-76cf-11eb-2141-6f79236f5b04
-#harmonic(110,5,0.5)
+harmonic(220,60,1.5)
 
 # ╔═╡ Cell order:
 # ╠═f8409fca-5f38-11eb-3d70-abbd0172a48e
 # ╠═6677cb46-730c-11eb-02d5-df779155ff1e
-# ╟─6805c290-5f39-11eb-25b4-35af904a3f36
+# ╠═6805c290-5f39-11eb-25b4-35af904a3f36
 # ╠═abb27b0a-5f39-11eb-2363-ebbf45649749
 # ╠═3c657fec-5f3a-11eb-03f2-9d8cf6007e5b
-# ╟─7d7f0bbc-5f3a-11eb-160f-d93295e18826
+# ╠═7d7f0bbc-5f3a-11eb-160f-d93295e18826
 # ╟─36afb2c8-5f57-11eb-0a13-21b31e1504a0
 # ╟─fa023098-5f39-11eb-2f81-2952de65bb83
 # ╠═5cf129d8-5f3b-11eb-1ca8-c7fd81335e53
